@@ -2,7 +2,7 @@ from flask import (
     Blueprint, flash, g, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
-
+import json
 from todo.db import get_db
 
 bp = Blueprint('task', __name__)
@@ -14,21 +14,22 @@ def index():
     posts = db.execute(
         'SELECT * FROM task'
     ).fetchall()
-    print(posts)
-    return jsonify({'data': posts})
+
+    return jsonify({'data': posts[0]['id']})
 
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
-    print(request.form)
     if request.method == 'POST':
-        task_name = request.form['task_name']
+        data = request.get_json()
+        task_name = data['task_name']
+        print(task_name)
         
         db = get_db()
         db.execute(
             'INSERT INTO task (task_name)'
             ' VALUES (?)',
-            (task_name)
+            (task_name,)
         )
         db.commit()
 
