@@ -1,6 +1,6 @@
 # To do list flask
 
-A to do list REST API built with flask and sqlite.
+A to do list REST API built with python flask web framework and sqlite3.
 
 
 ## Run Locally
