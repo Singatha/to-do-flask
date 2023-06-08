@@ -34,7 +34,7 @@ Install dependencies
 Start the server
 
 ```bash
-  flask --app task run
+  flask --app todo run
 ```
 
 ## Authors
